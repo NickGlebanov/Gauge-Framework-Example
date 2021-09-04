@@ -6,3 +6,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 ## 2. Устанавливаем gauge
 choco install gauge
+
+## 3. Скачиваем образ Mantis BT для virtual box и устнавливливаем его
+https://drive.google.com/file/d/1QVH8Ebvb3dqDQ4fK7nKWoufQm5MGKsWC/view?usp=sharing
+
