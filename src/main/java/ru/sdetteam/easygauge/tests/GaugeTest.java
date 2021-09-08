@@ -17,17 +17,17 @@ import static com.codeborne.selenide.Selenide.*;
 public class GaugeTest {
     @BeforeClass()
     public void setUp() {
-        WebDriverManager.firefoxdriver().setup();
+        WebDriverManager.chromedriver().setup();
         Configuration.browser = Browsers.CHROME;
         Configuration.timeout = 20000;
     }
 
 
-    @Test
-    public void testGauge() {
-        openURL();
-        writeLogin("administration", "root");
-    }
+//    @Test
+//    public void testGauge() {
+//        openURL();
+//        writeLogin("administration", "root");
+//    }
 
     @Step("Goto mantis page")
     public void openURL (){
