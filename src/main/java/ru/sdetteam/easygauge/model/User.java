@@ -20,4 +20,5 @@ public class User {
     private Integer lastVisit;
     private Integer dateCreated;
 
+
 }
