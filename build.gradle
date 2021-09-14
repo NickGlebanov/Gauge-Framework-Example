@@ -20,6 +20,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
 
+    implementation group: 'com.google.inject', name: 'guice', version: '5.0.1'
+    implementation group: 'org.mybatis', name: 'mybatis-guice', version: '3.12'
+
 }
 
 staticAnalysis {
