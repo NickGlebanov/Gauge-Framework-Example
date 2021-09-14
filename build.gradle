@@ -45,4 +45,3 @@ gauge {
     additionalFlags = '--verbose'
     gaugeRoot = '/opt/gauge'
 }
-
