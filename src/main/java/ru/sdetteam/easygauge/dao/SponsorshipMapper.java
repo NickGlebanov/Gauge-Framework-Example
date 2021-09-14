@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.Sponsorship;
 
-@Repository
+
 public interface SponsorshipMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_sponsorship_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_sponsorship_table (id, bug_id, ",
         "user_id, amount, ",
@@ -37,9 +27,6 @@ public interface SponsorshipMapper {
     })
     int insert(Sponsorship row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, bug_id, user_id, amount, logo, url, paid, date_submitted, last_updated",
@@ -59,9 +46,6 @@ public interface SponsorshipMapper {
     })
     Sponsorship selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, bug_id, user_id, amount, logo, url, paid, date_submitted, last_updated",
@@ -80,9 +64,6 @@ public interface SponsorshipMapper {
     })
     List<Sponsorship> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_sponsorship_table",
         "set bug_id = #{bugId,jdbcType=INTEGER},",

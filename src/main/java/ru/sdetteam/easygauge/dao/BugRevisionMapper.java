@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.BugRevision;
 
-@Repository
+
 public interface BugRevisionMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_bug_revision_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_bug_revision_table (id, bug_id, ",
         "bugnote_id, user_id, ",
@@ -37,9 +27,6 @@ public interface BugRevisionMapper {
     })
     int insert(BugRevision row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, bug_id, bugnote_id, user_id, `type`, `timestamp`, `value`",
@@ -57,9 +44,6 @@ public interface BugRevisionMapper {
     })
     BugRevision selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, bug_id, bugnote_id, user_id, `type`, `timestamp`, `value`",
@@ -76,9 +60,6 @@ public interface BugRevisionMapper {
     })
     List<BugRevision> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_bug_revision_table",
         "set bug_id = #{bugId,jdbcType=INTEGER},",

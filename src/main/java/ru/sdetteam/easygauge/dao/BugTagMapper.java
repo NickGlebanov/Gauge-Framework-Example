@@ -1,22 +1,13 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.BugTag;
 
-@Repository
+
 public interface BugTagMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Delete({
         "delete from mantis_bug_tag_table",
         "where bug_id = #{bugId,jdbcType=INTEGER}",
@@ -24,9 +15,6 @@ public interface BugTagMapper {
     })
     int deleteByPrimaryKey(@Param("bugId") Integer bugId, @Param("tagId") Integer tagId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_bug_tag_table (bug_id, tag_id, ",
         "user_id, date_attached)",
@@ -35,9 +23,6 @@ public interface BugTagMapper {
     })
     int insert(BugTag row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "bug_id, tag_id, user_id, date_attached",
@@ -53,9 +38,6 @@ public interface BugTagMapper {
     })
     BugTag selectByPrimaryKey(@Param("bugId") Integer bugId, @Param("tagId") Integer tagId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "bug_id, tag_id, user_id, date_attached",
@@ -69,9 +51,6 @@ public interface BugTagMapper {
     })
     List<BugTag> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_bug_tag_table",
         "set user_id = #{userId,jdbcType=INTEGER},",

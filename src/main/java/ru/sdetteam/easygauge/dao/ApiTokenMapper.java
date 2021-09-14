@@ -1,30 +1,19 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.ApiToken;
 
-@Repository
+
 public interface ApiTokenMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Delete({
         "delete from mantis_api_token_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_api_token_table (id, user_id, ",
         "`name`, hash, date_created, ",
@@ -35,9 +24,6 @@ public interface ApiTokenMapper {
     })
     int insert(ApiToken row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, user_id, `name`, hash, date_created, date_used",
@@ -54,9 +40,6 @@ public interface ApiTokenMapper {
     })
     ApiToken selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, user_id, `name`, hash, date_created, date_used",
@@ -72,9 +55,6 @@ public interface ApiTokenMapper {
     })
     List<ApiToken> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_api_token_table",
         "set user_id = #{userId,jdbcType=INTEGER},",

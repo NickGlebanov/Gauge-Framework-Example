@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.Filters;
 
-@Repository
+
 public interface FiltersMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_filters_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_filters_table (id, user_id, ",
         "project_id, is_public, ",
@@ -35,9 +25,6 @@ public interface FiltersMapper {
     })
     int insert(Filters row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, user_id, project_id, is_public, `name`, filter_string",
@@ -54,9 +41,6 @@ public interface FiltersMapper {
     })
     Filters selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, user_id, project_id, is_public, `name`, filter_string",
@@ -72,9 +56,6 @@ public interface FiltersMapper {
     })
     List<Filters> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_filters_table",
         "set user_id = #{userId,jdbcType=INTEGER},",

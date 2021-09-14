@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.BugRelationship;
 
-@Repository
+
 public interface BugRelationshipMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_bug_relationship_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_bug_relationship_table (id, source_bug_id, ",
         "destination_bug_id, relationship_type)",
@@ -33,9 +23,6 @@ public interface BugRelationshipMapper {
     })
     int insert(BugRelationship row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, source_bug_id, destination_bug_id, relationship_type",
@@ -50,9 +37,6 @@ public interface BugRelationshipMapper {
     })
     BugRelationship selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, source_bug_id, destination_bug_id, relationship_type",
@@ -66,9 +50,6 @@ public interface BugRelationshipMapper {
     })
     List<BugRelationship> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_bug_relationship_table",
         "set source_bug_id = #{sourceBugId,jdbcType=INTEGER},",

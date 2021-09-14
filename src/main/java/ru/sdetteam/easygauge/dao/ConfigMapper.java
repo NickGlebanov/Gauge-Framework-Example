@@ -1,22 +1,14 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.Config;
 
-@Repository
+
 public interface ConfigMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_config_table",
         "where config_id = #{configId,jdbcType=VARCHAR}",
@@ -25,9 +17,6 @@ public interface ConfigMapper {
     })
     int deleteByPrimaryKey(@Param("configId") String configId, @Param("projectId") Integer projectId, @Param("userId") Integer userId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_config_table (config_id, project_id, ",
         "user_id, access_reqd, ",
@@ -38,9 +27,6 @@ public interface ConfigMapper {
     })
     int insert(Config row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "config_id, project_id, user_id, access_reqd, `type`, `value`",
@@ -59,9 +45,6 @@ public interface ConfigMapper {
     })
     Config selectByPrimaryKey(@Param("configId") String configId, @Param("projectId") Integer projectId, @Param("userId") Integer userId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "config_id, project_id, user_id, access_reqd, `type`, `value`",
@@ -77,9 +60,6 @@ public interface ConfigMapper {
     })
     List<Config> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_config_table",
         "set access_reqd = #{accessReqd,jdbcType=INTEGER},",

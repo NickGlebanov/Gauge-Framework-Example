@@ -1,30 +1,21 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.Tokens;
 
-@Repository
+
 public interface TokensMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_tokens_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Insert({
         "insert into mantis_tokens_table (id, `owner`, ",
         "`type`, `timestamp`, ",
@@ -35,9 +26,7 @@ public interface TokensMapper {
     })
     int insert(Tokens row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Select({
         "select",
         "id, `owner`, `type`, `timestamp`, expiry, `value`",
@@ -54,9 +43,7 @@ public interface TokensMapper {
     })
     Tokens selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Select({
         "select",
         "id, `owner`, `type`, `timestamp`, expiry, `value`",
@@ -72,9 +59,7 @@ public interface TokensMapper {
     })
     List<Tokens> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Update({
         "update mantis_tokens_table",
         "set `owner` = #{owner,jdbcType=INTEGER},",

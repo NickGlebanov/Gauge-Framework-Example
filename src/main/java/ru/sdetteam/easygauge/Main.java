@@ -17,8 +17,8 @@ public class Main {
     public static void main(String[] args) {
         GaugeSqlSessionFactory gaugeSqlSessionFactory = new GaugeSqlSessionFactory();
         gaugeSqlSessionFactory.create();
-        //У
         gaugeSqlSessionFactory.getSession().getMapper(UserMapper.class).findAll().forEach(System.out::println);
+        System.out.println();
     }
 
 }

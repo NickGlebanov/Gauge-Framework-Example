@@ -23,7 +23,7 @@ public class GaugeSqlSessionFactory {
         DataSource dataSource = new PooledDataSource(DRIVER, URL, USERNAME, PASSWORD);
         Environment environment = new Environment("Development", new JdbcTransactionFactory(), dataSource);
         Configuration configuration = new Configuration(environment);
-        configuration.addMapper(UserMapper.class);
+        configuration.addMappers("ru.sdetteam.easygauge.dao");
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
         sqlSessionFactory = builder.build(configuration);
     }

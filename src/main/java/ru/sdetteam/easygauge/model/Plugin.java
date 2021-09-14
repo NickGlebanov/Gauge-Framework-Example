@@ -20,7 +20,7 @@ public class Plugin {
     /**
      * Column: protected
      */
-    private Byte protected;
+    private Byte isProtected;
 
     /**
      * Column: priority

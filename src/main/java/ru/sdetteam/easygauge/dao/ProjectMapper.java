@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.Project;
 
-@Repository
+
 public interface ProjectMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_project_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_project_table (id, `name`, ",
         "`status`, enabled, ",
@@ -39,9 +29,6 @@ public interface ProjectMapper {
     })
     int insert(Project row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, `name`, `status`, enabled, view_state, access_min, file_path, category_id, ",
@@ -63,9 +50,6 @@ public interface ProjectMapper {
     })
     Project selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, `name`, `status`, enabled, view_state, access_min, file_path, category_id, ",
@@ -86,9 +70,6 @@ public interface ProjectMapper {
     })
     List<Project> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_project_table",
         "set `name` = #{name,jdbcType=VARCHAR},",

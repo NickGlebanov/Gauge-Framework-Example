@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.Bugnote;
 
-@Repository
+
 public interface BugnoteMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_bugnote_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_bugnote_table (id, bug_id, ",
         "reporter_id, bugnote_text_id, ",
@@ -39,9 +29,6 @@ public interface BugnoteMapper {
     })
     int insert(Bugnote row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, bug_id, reporter_id, bugnote_text_id, view_state, note_type, note_attr, ",
@@ -63,9 +50,6 @@ public interface BugnoteMapper {
     })
     Bugnote selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, bug_id, reporter_id, bugnote_text_id, view_state, note_type, note_attr, ",
@@ -86,9 +70,6 @@ public interface BugnoteMapper {
     })
     List<Bugnote> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_bugnote_table",
         "set bug_id = #{bugId,jdbcType=INTEGER},",

@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.CustomField;
 
-@Repository
+
 public interface CustomFieldMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_custom_field_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_custom_field_table (id, `name`, ",
         "`type`, default_value, ",
@@ -49,9 +39,6 @@ public interface CustomFieldMapper {
     })
     int insert(CustomField row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, `name`, `type`, default_value, valid_regexp, access_level_r, access_level_rw, ",
@@ -84,9 +71,6 @@ public interface CustomFieldMapper {
     })
     CustomField selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, `name`, `type`, default_value, valid_regexp, access_level_r, access_level_rw, ",
@@ -118,9 +102,6 @@ public interface CustomFieldMapper {
     })
     List<CustomField> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_custom_field_table",
         "set `name` = #{name,jdbcType=VARCHAR},",

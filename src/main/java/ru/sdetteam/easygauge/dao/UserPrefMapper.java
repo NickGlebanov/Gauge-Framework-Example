@@ -1,30 +1,21 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.UserPref;
 
-@Repository
+
 public interface UserPrefMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_user_pref_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Insert({
         "insert into mantis_user_pref_table (id, user_id, ",
         "project_id, default_profile, ",
@@ -59,9 +50,7 @@ public interface UserPrefMapper {
     })
     int insert(UserPref row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Select({
         "select",
         "id, user_id, project_id, default_profile, default_project, refresh_delay, redirect_delay, ",
@@ -107,9 +96,7 @@ public interface UserPrefMapper {
     })
     UserPref selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Select({
         "select",
         "id, user_id, project_id, default_profile, default_project, refresh_delay, redirect_delay, ",
@@ -154,9 +141,7 @@ public interface UserPrefMapper {
     })
     List<UserPref> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Update({
         "update mantis_user_pref_table",
         "set user_id = #{userId,jdbcType=INTEGER},",

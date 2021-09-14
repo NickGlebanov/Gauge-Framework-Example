@@ -1,22 +1,14 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.CustomFieldProject;
 
-@Repository
+
 public interface CustomFieldProjectMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_custom_field_project_table",
         "where field_id = #{fieldId,jdbcType=INTEGER}",
@@ -24,9 +16,6 @@ public interface CustomFieldProjectMapper {
     })
     int deleteByPrimaryKey(@Param("fieldId") Integer fieldId, @Param("projectId") Integer projectId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_custom_field_project_table (field_id, project_id, ",
         "`sequence`)",
@@ -35,9 +24,6 @@ public interface CustomFieldProjectMapper {
     })
     int insert(CustomFieldProject row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "field_id, project_id, `sequence`",
@@ -52,9 +38,6 @@ public interface CustomFieldProjectMapper {
     })
     CustomFieldProject selectByPrimaryKey(@Param("fieldId") Integer fieldId, @Param("projectId") Integer projectId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "field_id, project_id, `sequence`",
@@ -67,9 +50,6 @@ public interface CustomFieldProjectMapper {
     })
     List<CustomFieldProject> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_custom_field_project_table",
         "set `sequence` = #{sequence,jdbcType=SMALLINT}",

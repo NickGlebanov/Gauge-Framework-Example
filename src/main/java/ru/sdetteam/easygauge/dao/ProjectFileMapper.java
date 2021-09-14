@@ -1,30 +1,20 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.ProjectFile;
 
-@Repository
+
 public interface ProjectFileMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_project_file_table",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int deleteByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_project_file_table (id, project_id, ",
         "title, description, ",
@@ -41,9 +31,6 @@ public interface ProjectFileMapper {
     })
     int insert(ProjectFile row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, project_id, title, description, diskfile, filename, folder, filesize, file_type, ",
@@ -67,9 +54,6 @@ public interface ProjectFileMapper {
     })
     ProjectFile selectByPrimaryKey(Integer id);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "id, project_id, title, description, diskfile, filename, folder, filesize, file_type, ",
@@ -92,9 +76,6 @@ public interface ProjectFileMapper {
     })
     List<ProjectFile> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_project_file_table",
         "set project_id = #{projectId,jdbcType=INTEGER},",

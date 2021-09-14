@@ -32,15 +32,13 @@ public class User {
      */
     private String password;
 
-    /**
-     * Column: enabled
-     */
+
     private Byte enabled;
 
     /**
      * Column: protected
      */
-    private Byte protected;
+    private Byte isProtected;
 
     /**
      * Column: access_level

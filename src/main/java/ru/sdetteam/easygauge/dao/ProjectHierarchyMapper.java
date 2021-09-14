@@ -1,19 +1,14 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.ProjectHierarchy;
 
-@Repository
+
 public interface ProjectHierarchyMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Insert({
         "insert into mantis_project_hierarchy_table (child_id, parent_id, ",
         "inherit_parent)",
@@ -22,9 +17,6 @@ public interface ProjectHierarchyMapper {
     })
     int insert(ProjectHierarchy row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "child_id, parent_id, inherit_parent",

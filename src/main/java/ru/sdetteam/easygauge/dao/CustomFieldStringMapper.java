@@ -1,22 +1,14 @@
 package ru.sdetteam.easygauge.dao;
 
 import java.util.List;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+
+import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.stereotype.Repository;
 import ru.sdetteam.easygauge.model.CustomFieldString;
 
-@Repository
+
 public interface CustomFieldStringMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+
     @Delete({
         "delete from mantis_custom_field_string_table",
         "where field_id = #{fieldId,jdbcType=INTEGER}",
@@ -24,9 +16,6 @@ public interface CustomFieldStringMapper {
     })
     int deleteByPrimaryKey(@Param("fieldId") Integer fieldId, @Param("bugId") Integer bugId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Insert({
         "insert into mantis_custom_field_string_table (field_id, bug_id, ",
         "`value`, `text`)",
@@ -35,9 +24,6 @@ public interface CustomFieldStringMapper {
     })
     int insert(CustomFieldString row);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "field_id, bug_id, `value`, `text`",
@@ -53,9 +39,6 @@ public interface CustomFieldStringMapper {
     })
     CustomFieldString selectByPrimaryKey(@Param("fieldId") Integer fieldId, @Param("bugId") Integer bugId);
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Select({
         "select",
         "field_id, bug_id, `value`, `text`",
@@ -69,9 +52,6 @@ public interface CustomFieldStringMapper {
     })
     List<CustomFieldString> selectAll();
 
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     @Update({
         "update mantis_custom_field_string_table",
         "set `value` = #{value,jdbcType=VARCHAR},",
