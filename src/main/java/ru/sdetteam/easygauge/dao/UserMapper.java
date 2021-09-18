@@ -22,9 +22,15 @@ public interface UserMapper {
     @Delete(value = "delete from mantis_user_table")
     void deleteAllUsers();
 
-    @Insert(value = "insert into mantis_user_table (username, realname, email, password) values (#{username}, #{realname}, #{email}, #{password})")
+    @Insert(value =
+            "insert into mantis_user_table " +
+                    "(username, realname, email, password, enabled, protected, access_level) " +
+                    "values (#{username}, #{realname}, #{email}, #{password}, #{enabled}, #{protected}, #{accessLevel})")
     User insertNewUser(User user);
 
-//    @Update(value = "update from mantis_user_table set username = #{newName}, realname = #{realNewName}, email = #{email}")
-//    User updateUser();
+    @Update(value =
+            "update from mantis_user_table " +
+                    "set username = #{newName}, realname = #{realNewName}, email = #{newEmail}, enabled = #{newEnabled}, protected = #{newProtected}, access_level = #{newAccessLevel} " +
+                    "where username = #{oldName}, realname = #{realOldName}, email = #{oldEmail}, enabled = #{oldEnabled}, protected = #{oldProtected}, access_level = #{oldAccessLevel}")
+    User updateUser(User newUser, User oldUser);
 }
