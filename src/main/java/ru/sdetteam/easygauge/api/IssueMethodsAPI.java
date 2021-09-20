@@ -5,16 +5,23 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import ru.sdetteam.easygauge.enums.FilterEnum;
+import ru.sdetteam.easygauge.issue_model.File;
+import ru.sdetteam.easygauge.issue_model.Files;
+import ru.sdetteam.easygauge.issue_model.Issue;
+import ru.sdetteam.easygauge.issue_model.Issues;
+import ru.sdetteam.easygauge.parser.IssueParser;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 
 public class IssueMethodsAPI {
 
-    BuilderAPI builderAPI = new BuilderAPI();
-    UrlBuilder urlBuilder = new UrlBuilder();
+    final BuilderAPI builderAPI = new BuilderAPI();
+    final UrlBuilder urlBuilder = new UrlBuilder();
+    final IssueParser issueParser = new IssueParser();
 
-    public Response getIssues(Integer issueId) throws IOException {
+    public Issue getIssue(Integer issueId) throws IOException {
 
         final URL url = urlBuilder
                 .getSchemeAndHost()
@@ -27,10 +34,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInIssue(response);
     }
 
-    public Response getIssueFiles(Integer issueId) throws IOException {
+    public Files getIssueFiles(Integer issueId) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -43,10 +52,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInFiles(response);
     }
 
-    public Response getIssueFile(Integer issueId, Integer fileId) throws IOException {
+    public File getIssueFile(Integer issueId, Integer fileId) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -60,10 +71,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInFile(response);
     }
 
-    public Response getAllIssues(Integer pageSize, Integer pageNumber) throws IOException {
+    public Issues getAllIssues(Integer pageSize, Integer pageNumber) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -76,10 +89,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInIssues(response);
     }
 
-    public Response getIssuesForProject(Integer projectId) throws IOException {
+    public Issues getIssuesForProject(Integer projectId) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -91,10 +106,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInIssues(response);
     }
 
-    public Response getIssuesMatchingFilterById(Integer filterId) throws IOException {
+    public Issues getIssuesMatchingFilterById(Integer filterId) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -106,10 +123,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInIssues(response);
     }
 
-    public Response getIssuesMatchingFilterByName(FilterEnum filterName) throws IOException {
+    public Issues getIssuesMatchingFilterByName(FilterEnum filterName) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -121,10 +140,12 @@ public class IssueMethodsAPI {
                 .getMethod("GET", null)
                 .buildGetAndDelete();
 
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInIssues(response);
     }
 
-    public Response postIssue() throws IOException {
+    public Issue postIssue() throws IOException {
         final URL urls = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -137,7 +158,9 @@ public class IssueMethodsAPI {
                 .getIssues(urls)
                 .getMethod("POST", body)
                 .buildPostAndPatch();
-        return builderAPI.caller(request);
+        final Response response = builderAPI.caller(request);
+
+        return issueParser.parseInIssue(response);
     }
 
     public Response patchIssue(Integer issueId) throws IOException {

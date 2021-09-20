@@ -1,5 +1,6 @@
 package ru.sdetteam.easygauge.tests;
 
+
 import org.junit.Test;
 import ru.sdetteam.easygauge.api.IssueMethodsAPI;
 import ru.sdetteam.easygauge.enums.FilterEnum;
@@ -12,7 +13,8 @@ public class RESTTest {
 
     @Test
     public void testAPI() throws IOException {
-        issueMethodsAPI.getIssues(1);
+        issueMethodsAPI.getIssue(1);
         issueMethodsAPI.getIssuesMatchingFilterByName(FilterEnum.ASSIGNED);
+        issueMethodsAPI.patchIssue(1);
     }
 }
