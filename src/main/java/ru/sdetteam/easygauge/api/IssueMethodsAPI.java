@@ -9,7 +9,10 @@ import ru.sdetteam.easygauge.issue_model.File;
 import ru.sdetteam.easygauge.issue_model.Files;
 import ru.sdetteam.easygauge.issue_model.Issue;
 import ru.sdetteam.easygauge.issue_model.Issues;
+import ru.sdetteam.easygauge.note_model.Note;
+import ru.sdetteam.easygauge.parser.FileParser;
 import ru.sdetteam.easygauge.parser.IssueParser;
+import ru.sdetteam.easygauge.parser.NoteParser;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +23,8 @@ public class IssueMethodsAPI {
     final BuilderAPI builderAPI = new BuilderAPI();
     final UrlBuilder urlBuilder = new UrlBuilder();
     final IssueParser issueParser = new IssueParser();
+    final FileParser fileParser = new FileParser();
+    final NoteParser noteParser = new NoteParser();
 
     public Issue getIssue(Integer issueId) throws IOException {
 
@@ -54,7 +59,7 @@ public class IssueMethodsAPI {
 
         final Response response = builderAPI.caller(request);
 
-        return issueParser.parseInFiles(response);
+        return fileParser.parseInFiles(response);
     }
 
     public File getIssueFile(Integer issueId, Integer fileId) throws IOException {
@@ -73,7 +78,7 @@ public class IssueMethodsAPI {
 
         final Response response = builderAPI.caller(request);
 
-        return issueParser.parseInFile(response);
+        return fileParser.parseInFile(response);
     }
 
     public Issues getAllIssues(Integer pageSize, Integer pageNumber) throws IOException {
@@ -128,7 +133,7 @@ public class IssueMethodsAPI {
         return issueParser.parseInIssues(response);
     }
 
-    public Issues getIssuesMatchingFilterByName(FilterEnum filterName) throws IOException {
+    public Issues getIssuesMatchingFilterByFilterName(FilterEnum filterName) throws IOException {
         final URL url = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -163,7 +168,7 @@ public class IssueMethodsAPI {
         return issueParser.parseInIssue(response);
     }
 
-    public Response patchIssue(Integer issueId) throws IOException {
+    public void updateIssue(Integer issueId) throws IOException {
         final URL urls = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -176,10 +181,10 @@ public class IssueMethodsAPI {
                 .getIssues(urls)
                 .getMethod("PATCH", body)
                 .buildPostAndPatch();
-        return builderAPI.caller(request);
+        builderAPI.caller(request);
     }
 
-    public Response deleteIssue(Integer issueId) throws IOException {
+    public void deleteIssue(Integer issueId) throws IOException {
         final URL urls = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -193,10 +198,10 @@ public class IssueMethodsAPI {
                 .getIssues(urls)
                 .getMethod("DELETE", body)
                 .buildGetAndDelete();
-        return builderAPI.caller(request);
+        builderAPI.caller(request);
     }
 
-    public Response addAttachmentToIssue(Integer issueId) throws IOException {
+    public void addAttachmentToIssue(Integer issueId) throws IOException {
         final URL urls = urlBuilder
                 .getSchemeAndHost()
                 .addPathSegment("issues")
@@ -208,10 +213,30 @@ public class IssueMethodsAPI {
         RequestBody body = RequestBody.create("{\n  \"summary\": \"This is a test issue\",\n  \"description\": \"This is a test description\",\n  \"category\": {\n    \"name\": \"General\"\n  },\n  \"project\": {\n    \"name\": \"test\"\n  }\n}", mediaType);
         final Request request = builderAPI
                 .getIssues(urls)
-                .getMethod("PATCH", body)
+                .getMethod("POST", body)
                 .buildPostAndPatch();
-        return builderAPI.caller(request);
+        builderAPI.caller(request);
     }
 
-    //Остановился на методе POST Create an issue note
+    public Note createAnIssueNote(Integer issueId) throws IOException {
+        final URL urls = urlBuilder
+                .getSchemeAndHost()
+                .addPathSegment("issues")
+                .addPathSegment(String.valueOf(issueId))
+                .addPathSegment("notes")
+                .buildUrl();
+
+        MediaType mediaType = MediaType.parse("application/json");
+        // ТУТ ХОЧУ БОДИ ДЖЕЙСОН ФАЙЛ ПОЛУЧАТЬ ИЗ ВНЕ С ТЕСТОВЫМИ ДАННЫМИ, ПОКА БУДУ ГЛУШИТЬ СТАТИЧНЫМ НАБОРОМ ДАННЫХ
+        RequestBody body = RequestBody.create("{\n  \"text\": \"test note\",\n  \"view_state\": {\n  \t\"name\": \"public\"\n  }\n}", mediaType);
+        final Request request = builderAPI
+                .getIssues(urls)
+                .getMethod("POST", body)
+                .buildPostAndPatch();
+        final Response response = builderAPI.caller(request);
+
+        return noteParser.parseInNote(response);
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package ru.sdetteam.easygauge.issue_model;
 
 import com.fasterxml.jackson.annotation.*;
+import ru.sdetteam.easygauge.project_model.Project;
 
 import java.util.HashMap;
 import java.util.List;

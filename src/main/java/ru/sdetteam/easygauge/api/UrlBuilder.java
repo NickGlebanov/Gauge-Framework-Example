@@ -11,7 +11,7 @@ public class UrlBuilder {
     public UrlBuilder getSchemeAndHost(){
 
         builder.scheme("http")
-                .host("192.168.0.43")
+                .host("192.168.0.28")
                 .addPathSegments("api/rest");
         return this;
     }
