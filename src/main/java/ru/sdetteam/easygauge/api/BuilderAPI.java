@@ -10,10 +10,10 @@ import java.net.URL;
 @Accessors(fluent = true)
 public class BuilderAPI {
 
-    OkHttpClient client = new OkHttpClient().newBuilder().build();
-    Builder builder = new Builder();
+    final OkHttpClient client = new OkHttpClient().newBuilder().build();
+    final Builder builder = new Builder();
 
-    public BuilderAPI getMethod(String method, RequestBody body){
+    public BuilderAPI getMethod(final String method, final RequestBody body){
         builder.method(method, body);
         return this;
     }
@@ -30,11 +30,11 @@ public class BuilderAPI {
                 .build();
     }
 
-    public Response caller(Request request) throws IOException {
+    public Response caller(final Request request) throws IOException {
         return client.newCall(request).execute();
     }
 
-    public BuilderAPI getIssues(URL url) {
+    public BuilderAPI getIssues(final URL url) {
         builder.url(url);
         return this;
     }

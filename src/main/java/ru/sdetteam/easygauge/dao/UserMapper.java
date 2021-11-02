@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import ru.sdetteam.easygauge.model.User;
+import ru.sdetteam.easygauge.models.model.User;
 
 import java.util.List;
 

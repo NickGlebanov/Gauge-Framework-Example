@@ -8,12 +8,12 @@ public class UrlBuilder {
 
     private final HttpUrl.Builder builder = new HttpUrl.Builder();
 
-    public UrlBuilder getSchemeAndHost(){
+    public UrlBuilder(){
 
         builder.scheme("http")
                 .host("192.168.0.28")
                 .addPathSegments("api/rest");
-        return this;
+
     }
 
     public UrlBuilder addPathSegment(String segment){

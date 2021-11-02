@@ -14,8 +14,7 @@ public class FileMethodsAPI {
 
     //TODO доделать десиреализацию в объекты
     public void getAllFiles() throws IOException {
-        final URL url = urlBuilder
-                .getSchemeAndHost()
+        final URL url = new UrlBuilder()
                 .addPathSegment("filters")
                 .buildUrl();
 

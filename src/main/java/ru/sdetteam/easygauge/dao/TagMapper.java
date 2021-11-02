@@ -4,8 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import ru.sdetteam.easygauge.model.Project;
-import ru.sdetteam.easygauge.model.Tag;
+import ru.sdetteam.easygauge.models.model.Tag;
 
 import java.util.List;
 

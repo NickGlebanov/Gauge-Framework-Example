@@ -5,9 +5,10 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import ru.sdetteam.easygauge.parser.ProjectParser;
-import ru.sdetteam.easygauge.project_model.Project;
-import ru.sdetteam.easygauge.project_model.Projects;
-import ru.sdetteam.easygauge.project_model.Version;
+import ru.sdetteam.easygauge.models.project_model.Project;
+import ru.sdetteam.easygauge.models.project_model.Projects;
+import ru.sdetteam.easygauge.models.project_model.SubProject;
+import ru.sdetteam.easygauge.models.project_model.Version;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,8 +21,7 @@ public class ProjectMethodsAPI {
 
     public Projects getAllProjects() throws IOException {
 
-        final URL url = urlBuilder
-                .getSchemeAndHost()
+        final URL url = new UrlBuilder()
                 .addPathSegment("projects")
                 .buildUrl();
 
@@ -37,8 +37,7 @@ public class ProjectMethodsAPI {
 
     public Project getProjectById(Integer id) throws IOException {
 
-        final URL url = urlBuilder
-                .getSchemeAndHost()
+        final URL url = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(id))
                 .buildUrl();
@@ -54,8 +53,7 @@ public class ProjectMethodsAPI {
     }
 
     public Project postProject(Project project) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .buildUrl();
 
@@ -72,8 +70,7 @@ public class ProjectMethodsAPI {
     }
 
     public Project patchProject(Project project, Integer issueId) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(issueId))
                 .buildUrl();
@@ -91,8 +88,7 @@ public class ProjectMethodsAPI {
     }
 
     public void deleteProject(Integer issueId) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(issueId))
                 .buildUrl();
@@ -108,9 +104,8 @@ public class ProjectMethodsAPI {
         projectParser.parseInProject(response);
     }
 
-    public Project postSubProject(Project subProject, Integer id) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+    public Project postSubProject(SubProject subProject, Integer id) throws IOException {
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(id))
                 .addPathSegment("subprojects")
@@ -128,9 +123,8 @@ public class ProjectMethodsAPI {
         return projectParser.parseInProject(response);
     }
 
-    public Project patchSubProject(Project subProject, Integer issueId, Integer subProjectId) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+    public Project patchSubProject(SubProject subProject, Integer issueId, Integer subProjectId) throws IOException {
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(issueId))
                 .addPathSegment("subprojects")
@@ -138,6 +132,7 @@ public class ProjectMethodsAPI {
                 .buildUrl();
 
         final String json = projectParser.parseInJSON(subProject);
+
         MediaType mediaType = MediaType.parse("application/json");
         RequestBody body = RequestBody.create(json, mediaType);
         final Request request = builderAPI
@@ -149,8 +144,7 @@ public class ProjectMethodsAPI {
     }
 
     public void deleteSubProject(Integer id) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(id))
                 .buildUrl();
@@ -167,8 +161,7 @@ public class ProjectMethodsAPI {
     }
 
     public Project createProjectVersion(Version version, Integer id) throws IOException {
-        final URL urls = urlBuilder
-                .getSchemeAndHost()
+        final URL urls = new UrlBuilder()
                 .addPathSegment("projects")
                 .addPathSegment(String.valueOf(id))
                 .addPathSegment("versions")

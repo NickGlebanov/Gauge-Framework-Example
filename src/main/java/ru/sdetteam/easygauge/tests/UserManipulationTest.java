@@ -1,10 +1,9 @@
 package ru.sdetteam.easygauge.tests;
 
-import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import ru.sdetteam.easygauge.dao.UserMapper;
 import ru.sdetteam.easygauge.factory.GaugeSqlSessionFactory;
-import ru.sdetteam.easygauge.model.User;
+import ru.sdetteam.easygauge.models.model.User;
 
 import java.util.List;
 
