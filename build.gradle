@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id "org.gauge" version "1.8.2"
+    id "com.gradleup.static-analysis" version "1.4"
+    id "com.github.spotbugs" version "4.7.4"
 }
 
 group 'org.example'
@@ -11,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    implementation 'junit:junit:4.13.1'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.4'
     implementation 'org.mybatis:mybatis:3.5.7'
@@ -24,6 +25,20 @@ dependencies {
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0-rc1'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.0-rc1'
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.0-rc1'
+
+    implementation group: 'com.google.inject', name: 'guice', version: '5.0.1'
+    implementation group: 'org.mybatis', name: 'mybatis-guice', version: '3.12'
+
+}
+
+staticAnalysis {
+    penalty {
+        maxErrors = 0
+        maxWarnings = 0
+    }
+    checkstyle { toolVersion = 9.0 }
+    pmd { }
+    spotbugs { }
 }
 
 test {

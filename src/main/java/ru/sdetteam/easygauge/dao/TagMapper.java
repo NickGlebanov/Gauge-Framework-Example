@@ -1,35 +1,71 @@
 package ru.sdetteam.easygauge.dao;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
-import ru.sdetteam.easygauge.models.model.Tag;
-
 import java.util.List;
+
+import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.type.JdbcType;
+import ru.sdetteam.easygauge.model.Tag;
+
 
 public interface TagMapper {
 
-    @Select(value="select * from mantis_tag_table")
-    List<Tag> findAll();
+    @Delete({
+        "delete from mantis_tag_table",
+        "where id = #{id,jdbcType=INTEGER}",
+          "and `name` = #{name,jdbcType=VARCHAR}"
+    })
+    int deleteByPrimaryKey(@Param("id") Integer id, @Param("name") String name);
 
-    @Select(value="select * from mantis_tag_table where id = #{id}" )
-    Tag getTagById(Integer id);
+    @Insert({
+        "insert into mantis_tag_table (id, `name`, ",
+        "user_id, date_created, ",
+        "date_updated, description)",
+        "values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, ",
+        "#{userId,jdbcType=INTEGER}, #{dateCreated,jdbcType=INTEGER}, ",
+        "#{dateUpdated,jdbcType=INTEGER}, #{description,jdbcType=LONGVARCHAR})"
+    })
+    int insert(Tag row);
 
-    @Delete(value = "delete from mantis_tag_table where id = #{id}")
-    void deleteTagById(Integer id);
+    @Select({
+        "select",
+        "id, `name`, user_id, date_created, date_updated, description",
+        "from mantis_tag_table",
+        "where id = #{id,jdbcType=INTEGER}",
+          "and `name` = #{name,jdbcType=VARCHAR}"
+    })
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
+        @Result(column="date_created", property="dateCreated", jdbcType=JdbcType.INTEGER),
+        @Result(column="date_updated", property="dateUpdated", jdbcType=JdbcType.INTEGER),
+        @Result(column="description", property="description", jdbcType=JdbcType.LONGVARCHAR)
+    })
+    Tag selectByPrimaryKey(@Param("id") Integer id, @Param("name") String name);
 
-    @Delete(value = "delete from mantis_tag_table")
-    void deleteAllTags();
+    @Select({
+        "select",
+        "id, `name`, user_id, date_created, date_updated, description",
+        "from mantis_tag_table"
+    })
+    @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR, id=true),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
+        @Result(column="date_created", property="dateCreated", jdbcType=JdbcType.INTEGER),
+        @Result(column="date_updated", property="dateUpdated", jdbcType=JdbcType.INTEGER),
+        @Result(column="description", property="description", jdbcType=JdbcType.LONGVARCHAR)
+    })
+    List<Tag> selectAll();
 
-    @Insert(value =
-            "insert into mantis_tag_table " +
-                    "(name,  description) " +
-                    "values (#{name}, #{description})")
-    Tag insertNewTag(Tag user);
-
-    @Update(value = "update from mantis_tag_table " +
-            "set name = #{newName}, user_id = #{newUser}, description = #{newDescription} " +
-            "where name = #{oldName}, user_id = #{oldUser}, description = #{oldDescription}")
-    Tag updateTag(Tag newTag, Tag oldTag);
+    @Update({
+        "update mantis_tag_table",
+        "set user_id = #{userId,jdbcType=INTEGER},",
+          "date_created = #{dateCreated,jdbcType=INTEGER},",
+          "date_updated = #{dateUpdated,jdbcType=INTEGER},",
+          "description = #{description,jdbcType=LONGVARCHAR}",
+        "where id = #{id,jdbcType=INTEGER}",
+          "and `name` = #{name,jdbcType=VARCHAR}"
+    })
+    int updateByPrimaryKey(Tag row);
 }
