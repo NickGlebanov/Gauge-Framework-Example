@@ -19,7 +19,7 @@ import javax.sql.DataSource;
 public class GaugeSqlSessionFactory {
 
     public static final String DRIVER = "org.mariadb.jdbc.Driver";
-    public static final String URL = "jdbc:mariadb://192.168.1.71:3306/mantis";
+    public static final String URL = "jdbc:mariadb://192.168.0.31:3306/mantis";
     public static final String USERNAME = "mantisuser";
     public static final String PASSWORD = "mantisuser";
     private static SqlSessionFactory sqlSessionFactory;

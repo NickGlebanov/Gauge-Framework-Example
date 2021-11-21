@@ -1,7 +1,6 @@
 package ru.sdetteam.easygauge.dao;
 
-import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.type.JdbcType;
+import org.apache.ibatis.annotations.Select;
 import ru.sdetteam.easygauge.model.User;
 
 import java.util.List;

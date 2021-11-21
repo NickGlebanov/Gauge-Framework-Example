@@ -19,6 +19,12 @@ dependencies {
     implementation 'com.thoughtworks.gauge:gauge-java:0.7.15'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    implementation 'com.codeborne:selenide:5.18.1'
+    implementation 'io.github.bonigarcia:webdrivermanager:4.4.3'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.2'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0-rc1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.0-rc1'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.0-rc1'
 
     implementation group: 'com.google.inject', name: 'guice', version: '5.0.1'
     implementation group: 'org.mybatis', name: 'mybatis-guice', version: '3.12'
